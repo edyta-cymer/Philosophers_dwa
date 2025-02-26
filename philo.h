@@ -6,7 +6,7 @@
 /*   By: ecymer <ecymer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 14:59:31 by ecymer            #+#    #+#             */
-/*   Updated: 2025/02/23 21:11:04 by ecymer           ###   ########.fr       */
+/*   Updated: 2025/02/26 23:19:30 by ecymer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,11 @@ typedef struct s_philo
 	struct s_table *table;
 } t_philo;
 
-
+int	ft_isnum(char c);
 int				init_data(t_data *data, char *argv[], int argc);
 long			ft_atol(const char *str);
+size_t			get_time(void);
+int	ft_usleep(size_t time);
+void    print_message(t_philo *philo, char *str);
+void     free_mutex(int i, t_table *table);
+int		check_status(t_philo *philo);

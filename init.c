@@ -6,11 +6,31 @@
 /*   By: ecymer <ecymer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 17:41:33 by ecymer            #+#    #+#             */
-/*   Updated: 2025/02/23 21:39:30 by ecymer           ###   ########.fr       */
+/*   Updated: 2025/02/26 19:26:06 by ecymer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+t_philo		init_philo(t_data *data, t_table *table, int i)
+{
+	t_philo		philo;
+	
+	philo.id = i + 1;
+	philo.meals_eaten = 0;
+	philo.last_meal = get_time();
+	philo.eating_flag = 0;
+	philo.data = data;
+	philo.table = table;
+	philo.r_fork = &table->forks[i];
+	if(i == 0)
+		philo.l_fork =&table->forks[data->num_of_philos - 1];
+	else
+		philo.l_fork = &table->forks[i - 1];
+	pthread_mutex_init(&philo.meal_lock, NULL);
+	return (philo);
+}
+
 
 int		init_data(t_data *data, char *argv[], int argc)
 {
@@ -55,6 +75,15 @@ int		init_table(t_data *data, t_table *table)
 			return(free_mutex(i, table), 2);
 		i++;	
 	}
-	//table->monitor =
+	i = 0;
+	while(i < data->num_of_philos)
+		table->philos[i] = init_philo(data, table, i++);
 	return (0);
 }
+
+
+// while i < data->num_of_philos
+//{
+//	philo->id = i;
+//}
+

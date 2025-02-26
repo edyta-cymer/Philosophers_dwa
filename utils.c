@@ -6,7 +6,7 @@
 /*   By: ecymer <ecymer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 14:59:18 by ecymer            #+#    #+#             */
-/*   Updated: 2025/02/23 19:37:57 by ecymer           ###   ########.fr       */
+/*   Updated: 2025/02/26 18:29:16 by ecymer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ long	ft_atol(const char *str)
 	return (num * sign);
 }
 
-size_t	get_current_time(void)
+size_t	get_time(void)
 {
 	struct timeval	time;
 
