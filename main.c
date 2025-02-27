@@ -6,7 +6,7 @@
 /*   By: ecymer <ecymer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 17:41:25 by ecymer            #+#    #+#             */
-/*   Updated: 2025/02/26 23:21:28 by ecymer           ###   ########.fr       */
+/*   Updated: 2025/02/27 16:55:41 by ecymer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,27 @@ void	*start_life(void* arg)
 	{
 		if(ft_eat(philo) != 0)
 			break;
+		if(check_status(philo) != 0)
+			break;
 		if(ft_is_sleeping(philo) != 0)
 			break;
+		if(check_status(philo) != 0)
+			break;
 		print_message(philo, "is thinking");
+		
 	}
 }
 
 void	*check_monitor(void* arg)
 {
-	
+	t_philo *philo;
+
+	philo = (t_philo*)arg;
+	while(1)
+	{
+		if(amount_meals(philo) != 0)
+			break;
+	}
 }
 
 int start_simulation(t_data *data, t_table *table)

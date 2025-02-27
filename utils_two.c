@@ -6,7 +6,7 @@
 /*   By: ecymer <ecymer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 21:22:12 by ecymer            #+#    #+#             */
-/*   Updated: 2025/02/26 22:24:26 by ecymer           ###   ########.fr       */
+/*   Updated: 2025/02/27 16:24:16 by ecymer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void    print_message(t_philo *philo, char *str)
 
     current_time = get_time() - philo->data->started;
     pthread_mutex_lock(&philo->data->write_lock);
-    printf("%lu %d %s\n", current_time, philo->id, str);
+    if(check_status(philo) == 0)
+        printf("%lu %d %s\n", current_time, philo->id, str);
     pthread_mutex_unlock(&philo->data->write_lock);
 }
 

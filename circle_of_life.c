@@ -6,7 +6,7 @@
 /*   By: ecymer <ecymer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 22:37:54 by ecymer            #+#    #+#             */
-/*   Updated: 2025/02/26 23:25:10 by ecymer           ###   ########.fr       */
+/*   Updated: 2025/02/27 16:28:28 by ecymer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,16 @@ int		check_status(t_philo *philo)
 
 int		ft_eat(t_philo *philo)
 {
+	if(check_status(philo) != 0)
+		return (-1);
 	if(pick_forks(philo) != 0)
-		return(-1);
+		return (-1);
+	if(check_status(philo) != 0)
+	{
+		pthread_mutex_unlock(philo->r_fork);
+		pthread_mutex_unlock(philo->l_fork);
+		return (-1);
+	}
 	print_message(philo, "is eating");
 	pthread_mutex_lock(&philo->meal_lock);
 	philo->last_meal = get_time();
