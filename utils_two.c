@@ -6,30 +6,28 @@
 /*   By: ecymer <ecymer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 21:22:12 by ecymer            #+#    #+#             */
-/*   Updated: 2025/02/27 16:24:16 by ecymer           ###   ########.fr       */
+/*   Updated: 2025/03/01 17:35:14 by ecymer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void     free_mutex(int i, t_table *table)
+void	free_mutex(int i, t_table *table)
 {
-    while( --i >= 0)
-        pthread_mutex_destroy(&table->forks[i]);
-    
+	while (--i >= 0)
+		pthread_mutex_destroy(&table->forks[i]);
 }
 
-void    print_message(t_philo *philo, char *str)
+void	print_message(t_philo *philo, char *str)
 {
-    size_t current_time;
+	size_t	current_time;
 
-    current_time = get_time() - philo->data->started;
-    pthread_mutex_lock(&philo->data->write_lock);
-    if(check_status(philo) == 0)
-        printf("%lu %d %s\n", current_time, philo->id, str);
-    pthread_mutex_unlock(&philo->data->write_lock);
+	current_time = get_time() - philo->data->started;
+	pthread_mutex_lock(&philo->data->write_lock);
+	if (check_status(philo) == 0)
+		printf("%lu %d %s\n", current_time, philo->id, str);
+	pthread_mutex_unlock(&philo->data->write_lock);
 }
-
 
 //  timestamp_in_ms X has taken a fork
 //◦ timestamp_in_ms X is eating

@@ -6,7 +6,7 @@
 /*   By: ecymer <ecymer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 14:59:31 by ecymer            #+#    #+#             */
-/*   Updated: 2025/02/26 23:19:30 by ecymer           ###   ########.fr       */
+/*   Updated: 2025/03/01 17:29:12 by ecymer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,45 +23,45 @@
 
 typedef struct s_data
 {
-	int num_of_philos;
-	size_t time_to_die;
-	size_t time_to_eat;
-	size_t time_to_sleep;
-	size_t started;
-	int amount_meals;
-	pthread_mutex_t dead_stop;
-	pthread_mutex_t write_lock;
-	int dead_flag;
-} t_data;
+	int				num_of_philos;
+	size_t			time_to_die;
+	size_t			time_to_eat;
+	size_t			time_to_sleep;
+	size_t			started;
+	int				amount_meals;
+	pthread_mutex_t	dead_stop;
+	pthread_mutex_t	write_lock;
+	int				dead_flag;
+}	t_data;
 
-struct s_philo;
+struct	s_philo;
 
 typedef struct s_table
 {
-	pthread_mutex_t *forks;
-	struct s_philo *philos;
-	pthread_t monitor;
-} t_table;
+	pthread_mutex_t	*forks;
+	struct s_philo	*philos;
+	pthread_t		monitor;
+}	t_table;
 
 typedef struct s_philo
 {
-	pthread_t thread;
-	int id;
-	int meals_eaten;
-	size_t last_meal;
-	int eating_flag;
-	pthread_mutex_t *r_fork;
-	pthread_mutex_t *l_fork;
-	pthread_mutex_t meal_lock;
-	struct s_data *data;
-	struct s_table *table;
-} t_philo;
+	pthread_t		thread;
+	int				id;
+	int				meals_eaten;
+	size_t			last_meal;
+	int				eating_flag;
+	pthread_mutex_t	*r_fork;
+	pthread_mutex_t	*l_fork;
+	pthread_mutex_t	meal_lock;
+	struct s_data	*data;
+	struct s_table	*table;
+}	t_philo;
 
-int	ft_isnum(char c);
-int				init_data(t_data *data, char *argv[], int argc);
-long			ft_atol(const char *str);
-size_t			get_time(void);
-int	ft_usleep(size_t time);
-void    print_message(t_philo *philo, char *str);
-void     free_mutex(int i, t_table *table);
-int		check_status(t_philo *philo);
+int					ft_isnum(char c);
+int					init_data(t_data *data, char *argv[], int argc);
+int					ft_usleep(size_t time);
+int					check_status(t_philo *philo);
+long				ft_atol(const char *str);
+size_t				get_time(void);
+void				print_message(t_philo *philo, char *str);
+void				free_mutex(int i, t_table *table);

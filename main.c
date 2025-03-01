@@ -6,7 +6,7 @@
 /*   By: ecymer <ecymer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 17:41:25 by ecymer            #+#    #+#             */
-/*   Updated: 2025/02/27 16:55:41 by ecymer           ###   ########.fr       */
+/*   Updated: 2025/03/01 17:25:44 by ecymer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,12 @@ void	*start_life(void* arg)
 	t_philo *philo;
 	
 	philo = (t_philo*)arg;
-	if(philo->id % 2 == 0)
+	if (philo->id % 2 == 0)
 		ft_usleep(1);
-	while(1)
+	while (1)
 	{
+		if(check_status(philo) != 0)
+			break;
 		if(ft_eat(philo) != 0)
 			break;
 		if(check_status(philo) != 0)
@@ -30,7 +32,6 @@ void	*start_life(void* arg)
 		if(check_status(philo) != 0)
 			break;
 		print_message(philo, "is thinking");
-		
 	}
 }
 
@@ -39,7 +40,7 @@ void	*check_monitor(void* arg)
 	t_philo *philo;
 
 	philo = (t_philo*)arg;
-	while(1)
+	while (1)
 	{
 		if(amount_meals(philo) != 0)
 			break;
